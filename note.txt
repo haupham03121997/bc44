@@ -1,0 +1,33 @@
+--- Giới thiệu thư mục ---
+
+node_modules : nơi chứa code của thư viện (axios, tailwind,..)
+
+public : nơi chứa tài nguyên của trang web (img, html)
+
+src : nợi tạo component
+
+.gitignore : liệt kê file, folder không được đẩy lên git 
+
+
+package-lock.json: liệt kê ,nhật kí các thư viện đã tải , có thể xoá
+
+package.json : KHÔNG ĐƯỢC XOÁ, liệt kê các thư viện đang dùng dự án, các config đang dùng
+
+readme.md : dev viết hướng dẫn sử dụng cho user
+
+
+--- Giới thiệu ---
+JSX : html + js => component
+SPAs : single page aplication ~ 1 file html đại diện cho nhiều page ( home page, login page, register page)
+
+
+--- Start dự án: npm start, Stop dự án : crl + c
+
+
+--- Day 1 ---
++ Data Binding : dưa dữ liệu lên layout
++ Event Handling : xử lý event => gắn function ( tham số và ko có tham số)
+
++ State và setState:
+ ko update trực tiếp giá trị state, phải update thông qua setState
+ setState => render lại layout ~ update layout
