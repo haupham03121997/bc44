@@ -8,10 +8,13 @@ import DataBinding from "./DataBinding/DataBinding";
 import EventHandling from "./EventHandling/EventHandling";
 import DemoState from "./DemoState/DemoState";
 import Ex_State_Car from "./Ex_State_Car/Ex_State_Car";
+import RenderWithMap from "./RenderWithMap/RenderWithMap";
+import DemoProps from "./DemoProps/DemoProps";
+import Ex_ShoeShop from "./Ex_ShoeShop/Ex_ShoeShop";
 
 function App() {
   return (
-    <div className="container">
+    <div className="">
       {/* <DemoClass /> */}
       {/* <DemoFunction></DemoFunction> */}
       {/* <DemoHeader /> */}
@@ -19,7 +22,10 @@ function App() {
       {/* <DataBinding /> */}
       {/* <EventHandling /> */}
       {/* <DemoState /> */}
-      <Ex_State_Car />
+      {/* <Ex_State_Car /> */}
+      {/* <RenderWithMap /> */}
+      {/* <DemoProps /> */}
+      <Ex_ShoeShop />
     </div>
   );
 }

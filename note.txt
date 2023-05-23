@@ -31,3 +31,6 @@ SPAs : single page aplication ~ 1 file html đại diện cho nhiều page ( hom
 + State và setState:
  ko update trực tiếp giá trị state, phải update thông qua setState
  setState => render lại layout ~ update layout
+
+--- Day 2 ---
++ Props : giao tiếp giữa các component ( truyền dữ liệu giữa 2 component)
