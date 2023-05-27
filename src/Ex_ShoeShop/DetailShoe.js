@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class DetailShoe extends Component {
   render() {
-    let { name, price, descriptquantity } = this.props.detail;
+    let { name, price, description, quantity } = this.props.detail;
     return (
       <div>
         <h2>Detail</h2>
