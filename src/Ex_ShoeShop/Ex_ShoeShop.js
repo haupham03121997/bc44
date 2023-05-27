@@ -50,12 +50,17 @@ export default class Ex_ShoeShop extends Component {
       // sau khi update soLuong, nếu bằng 0 thì xoá
       cloneCart.splice(index, 1);
     }
+    this.setState({ cart: cloneCart });
   };
   render() {
     return (
       <div>
         <div className="row">
-          <CartShoe handleRemove={this.handleDelete} cart={this.state.cart} />
+          <CartShoe
+            handleChangeAmount={this.handleChangeAmount}
+            handleRemove={this.handleDelete}
+            cart={this.state.cart}
+          />
           <ListShoe
             handleBuy={this.handleAddToCart}
             handleViewDetail={this.handleViewDetail}

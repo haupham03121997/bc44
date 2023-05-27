@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class CartShoe extends Component {
   render() {
-    let { cart, handleRemove } = this.props;
+    let { cart, handleRemove, handleChangeAmount } = this.props;
     return (
       <div className="col-6">
         {/* b4tabledefautl */}
@@ -22,9 +22,23 @@ export default class CartShoe extends Component {
                 <tr key={index}>
                   <td>{item.name}</td>
                   <td>
-                    <button className="btn btn-warning">-</button>
+                    <button
+                      onClick={() => {
+                        handleChangeAmount(item.id, -1);
+                      }}
+                      className="btn btn-warning"
+                    >
+                      -
+                    </button>
                     <strong className="mx-3">{item.soLuong}</strong>
-                    <button className="btn btn-success">+</button>
+                    <button
+                      onClick={() => {
+                        handleChangeAmount(item.id, +1);
+                      }}
+                      className="btn btn-success"
+                    >
+                      +
+                    </button>
                   </td>
                   <td>{item.price * item.soLuong}</td>
                   <td>
