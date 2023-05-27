@@ -12,6 +12,7 @@ import RenderWithMap from "./RenderWithMap/RenderWithMap";
 import DemoProps from "./DemoProps/DemoProps";
 import Ex_ShoeShop from "./Ex_ShoeShop/Ex_ShoeShop";
 import Ex_Movie from "./Ex_Movie/Ex_Movie";
+import Demo_MiniRedux from "./Demo_MiniRedux/Demo_MiniRedux";
 
 function App() {
   return (
@@ -27,7 +28,9 @@ function App() {
       {/* <RenderWithMap /> */}
       {/* <DemoProps /> */}
       {/* <Ex_ShoeShop /> */}
-      <Ex_Movie />
+      {/* <Ex_Movie /> */}
+      {/* redux */}
+      <Demo_MiniRedux />
     </div>
   );
 }

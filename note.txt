@@ -34,3 +34,13 @@ SPAs : single page aplication ~ 1 file html đại diện cho nhiều page ( hom
 
 --- Day 2 ---
 + Props : giao tiếp giữa các component ( truyền dữ liệu giữa 2 component)
+
+
+
+redux
+https://redux.js.org/assets/images/ReduxDataFlowDiagram-49fa8c3968371d9ef6f2a1486bd40a26.gif
+
+
+- reducer : nơi viết logic update data của state ( store)
+    + reducer con: theo từng module
+    + rootReducer : tạo ra từ combineReducers

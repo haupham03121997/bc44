@@ -37,7 +37,7 @@ export default class Ex_ShoeShop extends Component {
   };
   handleDelete = (idShoe) => {
     let cloneCart = this.state.cart.filter((item) => item.id !== idShoe);
-
+    // splice
     this.setState({ cart: cloneCart });
   };
   handleChangeAmount = (idShoe, option) => {
