@@ -13,6 +13,7 @@ import DemoProps from "./DemoProps/DemoProps";
 import Ex_ShoeShop from "./Ex_ShoeShop/Ex_ShoeShop";
 import Ex_Movie from "./Ex_Movie/Ex_Movie";
 import Demo_MiniRedux from "./Demo_MiniRedux/Demo_MiniRedux";
+import Ex_ShoeShop_Redux from "./Ex_ShoeShop_Redux/Ex_ShoeShop_Redux";
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
       {/* <Ex_ShoeShop /> */}
       {/* <Ex_Movie /> */}
       {/* redux */}
-      <Demo_MiniRedux />
+      {/* <Demo_MiniRedux /> */}
+      <Ex_ShoeShop_Redux />
     </div>
   );
 }

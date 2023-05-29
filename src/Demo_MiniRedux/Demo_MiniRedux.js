@@ -1,13 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { TANG } from "./redux/constant/numberConstant";
+import { GIAM, TANG } from "./redux/constant/numberConstant";
 
 class Demo_MiniRedux extends Component {
   render() {
     console.log(this.props);
     return (
       <div className="text-center">
-        <button className="btn btn-danger">-</button>
+        <button
+          onClick={() => {
+            this.props.handleGiam(5);
+          }}
+          className="btn btn-danger"
+        >
+          -
+        </button>
         <strong className="mx-3">{this.props.amount}</strong>
         <button onClick={this.props.handleTang} className="btn btn-warning">
           +
@@ -29,6 +36,13 @@ let mapDispatchToProps = (dispatch) => {
         type: TANG,
         payload: 1,
       });
+    },
+    handleGiam: (number) => {
+      let action = {
+        type: GIAM,
+        payload: number,
+      };
+      dispatch(action);
     },
   };
 };
