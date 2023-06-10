@@ -10,10 +10,7 @@ export default class Ex_ShoeShop_Redux extends Component {
     detailShoe: shoeArr[0],
     cart: [],
   };
-  handleViewDetail = (shoe) => {
-    console.log("🚀 - file: Ex_ShoeShop.js:12 - Ex_ShoeShop - shoe", shoe);
-    this.setState({ detailShoe: shoe });
-  };
+
   handleAddToCart = (shoe) => {
     let cloneCart = [...this.state.cart];
 
@@ -57,18 +54,14 @@ export default class Ex_ShoeShop_Redux extends Component {
       <div>
         <div className="row">
           <CartShoe
-            handleChangeAmount={this.handleChangeAmount}
-            handleRemove={this.handleDelete}
-            cart={this.state.cart}
+          // handleChangeAmount={this.handleChangeAmount}
+          // handleRemove={this.handleDelete}
+          // cart={this.state.cart}
           />
-          <ListShoe
-            handleBuy={this.handleAddToCart}
-            handleViewDetail={this.handleViewDetail}
-            // list={this.state.shoeArr}
-          />
+          <ListShoe />
         </div>
 
-        <DetailShoe detail={this.state.detailShoe} />
+        <DetailShoe />
         <br />
         <br />
         <br />

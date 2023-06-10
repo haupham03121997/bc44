@@ -63,7 +63,7 @@ export default class Ex_ShoeShop extends Component {
           />
           <ListShoe
             handleBuy={this.handleAddToCart}
-            handleViewDetail={this.handleViewDetail}
+            // handleViewDetail={this.handleViewDetail}
             list={this.state.shoeArr}
           />
         </div>

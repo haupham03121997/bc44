@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class ItemShoe extends Component {
+class ItemShoe extends Component {
   render() {
     let { data, handleWatchDetail, handleBuyShoe } = this.props;
     let { image, name } = data;

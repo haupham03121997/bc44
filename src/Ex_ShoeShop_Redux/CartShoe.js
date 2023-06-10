@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-
-export default class CartShoe extends Component {
+import { connect } from "react-redux";
+import { DELETE_SHOE } from "./redux/constant/shoeConstant";
+class CartShoe extends Component {
   render() {
     let { cart, handleRemove, handleChangeAmount } = this.props;
     return (
@@ -63,3 +64,21 @@ export default class CartShoe extends Component {
     );
   }
 }
+let mapStateToProps = (state) => {
+  return {
+    cart: state.shoeReducer.cart,
+  };
+};
+let mapDispatchToProps = (dispatch) => {
+  return {
+    handleRemove: (idShoe) => {
+      let action = {
+        type: DELETE_SHOE,
+        payload: idShoe,
+      };
+      dispatch(action);
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartShoe);

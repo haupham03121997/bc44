@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default class DetailShoe extends Component {
+class DetailShoe extends Component {
   render() {
     let { name, price, description, quantity } = this.props.detail;
     return (
-      <div>
+      <div className="container ">
         <h2>Detail</h2>
         <table class="table">
           <thead>
@@ -30,4 +31,11 @@ export default class DetailShoe extends Component {
   }
 }
 
+let mapStateToProps = (state) => {
+  return {
+    detail: state.shoeReducer.detailShoe,
+  };
+};
+
+export default connect(mapStateToProps)(DetailShoe);
 // b4tabledefault

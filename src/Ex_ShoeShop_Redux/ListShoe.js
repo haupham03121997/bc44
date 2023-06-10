@@ -1,18 +1,11 @@
 import React, { Component } from "react";
-import ItemShoe from "./ItemShoe";
 import { connect } from "react-redux";
+import ItemShoe from "./ItemShoe";
 
 class ListShoe extends Component {
   renderListShoe = () => {
     return this.props.listShoe.map((item, index) => {
-      return (
-        <ItemShoe
-          handleWatchDetail={this.props.handleViewDetail}
-          key={index}
-          data={item}
-          handleBuyShoe={this.props.handleBuy}
-        />
-      );
+      return <ItemShoe key={index} data={item} />;
     });
   };
   render() {
