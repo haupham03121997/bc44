@@ -1,5 +1,10 @@
 import { shoeArr } from "../../data";
-import { BUY_SHOE, DELETE_SHOE, VIEW_DETAIL } from "../constant/shoeConstant";
+import {
+  BUY_SHOE,
+  CHANGE_AMOUNT,
+  DELETE_SHOE,
+  VIEW_DETAIL,
+} from "../constant/shoeConstant";
 
 let inititalState = {
   shoeArr: shoeArr,
@@ -32,6 +37,19 @@ export const shoeReducer = (state = inititalState, { type, payload }) => {
         cloneCart.push(newShoe);
       } else {
         cloneCart[index].soLuong = cloneCart[index].soLuong + 1;
+      }
+      return { ...state, cart: cloneCart };
+    }
+
+    case CHANGE_AMOUNT: {
+      // payload : object chứa shoe và option
+      let { shoe, option } = payload;
+      let cloneCart = [...state.cart];
+      let index = cloneCart.findIndex((item) => item.id == shoe.id);
+      cloneCart[index].soLuong = cloneCart[index].soLuong + option;
+      if (cloneCart[index].soLuong == 0) {
+        // sau khi update soLuong, nếu bằng 0 thì xoá
+        cloneCart.splice(index, 1);
       }
       return { ...state, cart: cloneCart };
     }

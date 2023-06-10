@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { DELETE_SHOE } from "./redux/constant/shoeConstant";
+import { CHANGE_AMOUNT, DELETE_SHOE } from "./redux/constant/shoeConstant";
 class CartShoe extends Component {
   render() {
     let { cart, handleRemove, handleChangeAmount } = this.props;
@@ -25,7 +25,7 @@ class CartShoe extends Component {
                   <td>
                     <button
                       onClick={() => {
-                        handleChangeAmount(item.id, -1);
+                        handleChangeAmount(item, -1);
                       }}
                       className="btn btn-warning"
                     >
@@ -34,7 +34,7 @@ class CartShoe extends Component {
                     <strong className="mx-3">{item.soLuong}</strong>
                     <button
                       onClick={() => {
-                        handleChangeAmount(item.id, +1);
+                        handleChangeAmount(item, +1);
                       }}
                       className="btn btn-success"
                     >
@@ -75,6 +75,16 @@ let mapDispatchToProps = (dispatch) => {
       let action = {
         type: DELETE_SHOE,
         payload: idShoe,
+      };
+      dispatch(action);
+    },
+    handleChangeAmount: (shoe, option) => {
+      let action = {
+        type: CHANGE_AMOUNT,
+        payload: {
+          shoe: shoe,
+          option: option,
+        },
       };
       dispatch(action);
     },
