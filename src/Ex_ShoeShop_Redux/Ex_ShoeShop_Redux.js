@@ -16,4 +16,8 @@ export default class Ex_ShoeShop_Redux extends Component {
       </div>
     );
   }
+
+  renderJSX() {
+    return <div>12312</div>;
+  }
 }

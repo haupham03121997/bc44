@@ -14,10 +14,11 @@ import DemoProps from "./DemoProps/DemoProps";
 import Ex_Movie from "./Ex_Movie/Ex_Movie";
 import Demo_MiniRedux from "./Demo_MiniRedux/Demo_MiniRedux";
 import Ex_ShoeShop_Redux from "./Ex_ShoeShop_Redux/Ex_ShoeShop_Redux";
+import DemoLifeCycle from "./DemoLifeCycle/DemoLifeCycle";
 
 function App() {
   return (
-    <div className="">
+    <section className="">
       {/* <DemoClass /> */}
       {/* <DemoFunction></DemoFunction> */}
       {/* <DemoHeader /> */}
@@ -32,9 +33,11 @@ function App() {
       {/* <Ex_Movie /> */}
       {/* redux */}
       {/* <Demo_MiniRedux /> */}
-      <Ex_ShoeShop_Redux />
-    </div>
+      {/* <Ex_ShoeShop_Redux /> */}
+      <DemoLifeCycle />
+    </section>
   );
 }
+console.log(App());
 
 export default App;
