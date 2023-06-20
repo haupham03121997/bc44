@@ -29,9 +29,10 @@ export default class ManagementProduct extends Component {
         description: "Mô tả sản phẩm",
       },
     ],
+    editingProduct: null,
   };
 
-  formValid = () => {
+  formInValid = () => {
     // Chưa đúng format
     let inValid = false;
     Object.values(this.state.values).forEach((value) => {
@@ -54,15 +55,17 @@ export default class ManagementProduct extends Component {
     // Xử lý lỗi
     // falsy : "" , 0 , null , undefined, false , -0 , NAN
     if (!value.trim()) {
+      // value.trim() === false
       // Không có giá trị, hàm trim()
       newError[name] = "Trường này không được để trống!";
     } else {
       // Xử lý validation khi nhập không đúng định dạng
       if (pattern) {
         const regex = new RegExp(pattern);
-        const inValid = regex.test(value);
-        if (!inValid) {
-          newError[name] = "Id không đúng định dạng!";
+        // Kiểm tra xem value có đúng định dạng của regex hay không
+        const valid = regex.test(value);
+        if (!valid) {
+          newError[name] = name + " không đúng định dạng!";
         } else {
           newError[name] = "";
         }
@@ -73,21 +76,23 @@ export default class ManagementProduct extends Component {
   };
 
   handleOnBlur = (event) => {
-    const { name, value } = event.target;
-    // name="id" , name = "name"
-    // {id : 1 , name : 2} => {id : 3 , name : 2}
-    console.log(event.target);
-    // values = {id : 1 , name : 2}
-    // newValues = {...values ,id: "12312"} => { name : 2 ,id: "12312"}
+    const { name, value, pattern, id } = event.target;
     const newValue = { ...this.state.values, [name]: value };
     const newError = { ...this.state.errors };
-    // Xử lý lỗi
     if (!value.trim()) {
-      // Không có giá trị
       newError[name] = "Trường này không được để trống!";
     } else {
-      newError[name] = "";
+      if (pattern) {
+        const regex = new RegExp(pattern);
+        const valid = regex.test(value);
+        if (!valid) {
+          newError[name] = name + " không đúng định dạng!";
+        } else {
+          newError[name] = "";
+        }
+      }
     }
+
     this.setState({ values: newValue, errors: newError });
   };
 
@@ -95,20 +100,66 @@ export default class ManagementProduct extends Component {
     event.preventDefault();
     // thêm 1 sản phẩm vào list products
 
-    // Xử lý validation form
-    console.log(this.formValid());
-    if (!this.formValid()) {
-      // copy ra 1 list mới và thêm vào 1 sản phẩm: this.state.values
-      const newProducts = [...this.state.listProducts, this.state.values];
-      this.setState({ listProducts: newProducts });
+    let valid = true;
+    // let a  = "1231" => a.length = 4
+    Object.values(this.state.errors).forEach((item) => {
+      if (item.length > 0) {
+        valid = false;
+      }
+    });
+    if (valid) {
+      const newListProducts = [...this.state.listProducts, this.state.values];
+      this.setState({ listProducts: newListProducts });
     }
+  };
+
+  handleDelete = (idProduct) => {
+    // console.log(idProduct);
+    // findINdex sẽ trả về vị trí tưng ứng của mảng khi tìm thấy, nếu không tìm thấy gì thì nó trả về -1
+    const foundProductIndex = this.state.listProducts.findIndex((item) => {
+      // item  = {id : '', name:'', image: ''}
+      return item.id === idProduct;
+    });
+    // hàm splice(start , deleteCount)
+    if (foundProductIndex !== -1) {
+      const newListProducts = [...this.state.listProducts];
+      newListProducts.splice(foundProductIndex, 1);
+      this.setState({ listProducts: newListProducts });
+    }
+  };
+
+  handleStartEdit = (idProduct) => {
+    const foundProduct = this.state.listProducts.find((item) => {
+      return item.id === idProduct;
+    });
+    this.setState({ editingProduct: foundProduct, values: foundProduct });
+  };
+
+  handleEdit = () => {
+    const foundProductIndex = this.state.listProducts.findIndex((item) => {
+      return item.id === this.state.editingProduct.id;
+    });
+    const newListProducts = [...this.state.listProducts];
+    newListProducts[foundProductIndex] = this.state.values;
+    this.setState({
+      listProducts: newListProducts,
+      values: {
+        id: "",
+        name: "",
+        image: "",
+        type: "Apple",
+        price: 0,
+        description: "",
+      },
+      editingProduct: null,
+    });
   };
 
   render() {
     // let { id, name, image, type, price, description, listProducts } =
     //   this.state;
     // values , errors , listProducts
-    let { values, errors, listProducts } = this.state;
+    let { values, errors, listProducts, editingProduct } = this.state;
 
     // Bốc tách từ values
     let { id, name, image, type, price, description } = values;
@@ -126,9 +177,10 @@ export default class ManagementProduct extends Component {
                 id="id"
                 name="id"
                 className="form-control"
-                pattern="^[0-9a-zA-Z]{1,5}$"
+                pattern="^[a-zA-Z0-9]*$"
                 onChange={this.handleOnchange}
                 onBlur={this.handleOnBlur}
+                disabled={editingProduct}
               />
               {errors.id && (
                 <span className="text text-danger">{errors.id}</span>
@@ -185,6 +237,7 @@ export default class ManagementProduct extends Component {
                 id="price"
                 name="price"
                 className="form-control"
+                pattern="^[0-9]*$"
                 onChange={this.handleOnchange}
                 onBlur={this.handleOnBlur}
               />
@@ -208,12 +261,25 @@ export default class ManagementProduct extends Component {
               )}
             </div>
             <div className="col-12">
-              <button className="btn btn-success mr-3">Add </button>
-              <button className="btn btn-warning">Edit </button>
+              {editingProduct ? (
+                <button
+                  type="button"
+                  onClick={this.handleEdit}
+                  className="btn btn-warning"
+                >
+                  Edit{" "}
+                </button>
+              ) : (
+                <button className="btn btn-success mr-3">Add </button>
+              )}
             </div>
           </div>
         </form>
-        <ProductList data={listProducts} />
+        <ProductList
+          data={listProducts}
+          handleDelete={this.handleDelete}
+          handleStartEdit={this.handleStartEdit}
+        />
       </div>
     );
   }

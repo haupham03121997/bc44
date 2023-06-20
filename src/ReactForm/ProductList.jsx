@@ -4,11 +4,11 @@ export default class ProductList extends Component {
   // Nhận props là data từ component cha là 1 mảng: data[]
   render() {
     // table bootstrap4
-    const { data } = this.props;
+    const { data, handleDelete, handleStartEdit } = this.props;
     return (
       <div className="mt-4">
         <h3>Product List</h3>
-        <table class="table table-dark">
+        <table className="table table-dark">
           <thead>
             <tr>
               <th scope="col">ID</th>
@@ -37,8 +37,18 @@ export default class ProductList extends Component {
                   <td>{item.price}</td>
                   <td>{item.description}</td>
                   <td>
-                    <button className="btn btn-warning mr-3">Edit</button>
-                    <button className="btn btn-danger">Delete</button>
+                    <button
+                      className="btn btn-warning mr-3"
+                      onClick={() => handleStartEdit(item.id)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => handleDelete(item.id)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               );
